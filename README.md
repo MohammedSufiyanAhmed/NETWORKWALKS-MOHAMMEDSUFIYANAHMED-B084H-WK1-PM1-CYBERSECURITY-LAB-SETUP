@@ -24,4 +24,8 @@ See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for reported DNS/connectivity issue
 3. **Check Connectivity:** Run terminal commands (`ip a`, `ping -c 3 google.com`) to verify connection[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span).
 4. **Configure Sharing:** Enable copy/paste and share the host Downloads folder with Kali[span_36](start_span)[span_36](end_span)[span_37](start_span)[span_37](end_span).
 5. **Take Snapshot:** Take a clean baseline snapshot after complete setup[span_38](start_span)[span_38](end_span).
-6.
+6.Screenshot evidence
+Screenshot evidence is pending addition to the repository. The planned images are the VMware network editor, Windows ipconfig, Kali terminal, VM settings, and snapshot manager. Images will be embedded here after they are uploaded to screenshots/.
+
+Troubleshooting
+See TROUBLESHOOTING.md for the problems reported and commands visible in the terminal screenshot.
