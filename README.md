@@ -1,31 +1,38 @@
 # NETWORKWALKS-MOHAMMEDSUFIYANAHMED-B084H-WK1-PM1-CYBERSECURITY-LAB-SETUP
 # WK1-PM1: Cybersecurity Lab Setup
 
-Week 1 lab setup for the NetworkWalks Cybersecurity Internship. The lab uses Kali Linux as the attacker VM connected to a NAT network.
+# Troubleshooting Notes
 
-## Lab Overview
+This file records the issues reported during the WK1-PM1 lab. Only commands visible in the supplied terminal screenshot are listed; the exact steps used to resolve every issue were not provided.
 
-| Item | Configuration / Status |
-| :--- | :--- |
-| **Attacker VM** | Kali Linux, VirtualBox |
-| **Network** | NATNetwork, 10.0.0.0/24 |
-| **Kali Address** | 10.0.0.2/24 (static) |
-| **Gateway & DNS** | Gateway 10.0.0.1, DNS 8.8.8.8 |
-| **Clipboard** | Copy/paste enabled |
-| **Shared Folder** | Enabled (/downloads mounted) |
-| **Baseline** | Clean snapshot taken |
+## DNS and network connectivity
 
-See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for reported DNS/connectivity issues and shared-folder behavior.
+DNS and connectivity failures occurred during setup. The later Kali terminal screenshot shows successful replies to `google.com` (three packets received, zero packet loss), so connectivity was working at the time of that capture.
 
-## Setup Notes
+The screenshot shows these commands:
 
-1. **Configure Networking:** Set NATNetwork in VirtualBox to `10.0.0.0/24` with gateway `10.0.0.1`[span_30](start_span)[span_30](end_span)[span_31](start_span)[span_31](end_span).
-2. **Set up Kali Networking:** Configure Kali with static address `10.0.0.2/24`, gateway `10.0.0.1`, and DNS `8.8.8.8`[span_32](start_span)[span_32](end_span)[span_33](start_span)[span_33](end_span).
-3. **Check Connectivity:** Run terminal commands (`ip a`, `ping -c 3 google.com`) to verify connection[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span).
-4. **Configure Sharing:** Enable copy/paste and share the host Downloads folder with Kali[span_36](start_span)[span_36](end_span)[span_37](start_span)[span_37](end_span).
-5. **Take Snapshot:** Take a clean baseline snapshot after complete setup[span_38](start_span)[span_38](end_span).
-6.Screenshot evidence
-Screenshot evidence is pending addition to the repository. The planned images are the VMware network editor, Windows ipconfig, Kali terminal, VM settings, and snapshot manager. Images will be embedded here after they are uploaded to screenshots/.
+```bash
+ip a | grep "inet 10"
+ping -c 3 google.com
+ls /mnt/hgfs/Downloads | head -5
+```
 
-Troubleshooting
-See TROUBLESHOOTING.md for the problems reported and commands visible in the terminal screenshot.
+The Windows network screenshot shows the host Wi-Fi address as `192.168.1.24`, the VMware VMnet8 adapter as `10.0.0.1`, and the VMware NAT subnet as `10.0.0.0/24`. In VMware NAT settings, the gateway is shown as `10.0.0.254`. The Kali address provided for the lab is `10.0.0.2/24`.
+
+## VMware shared-folder behavior
+
+The Windows Downloads folder was shared with the Kali VM and accessed under `/mnt/hgfs`. Copy/paste was enabled and worked. Drag-and-drop did not work in this session.
+
+The command shown for listing a few shared-folder entries is:
+
+```bash
+ls /mnt/hgfs/Downloads | head -5
+```
+
+## Snapshot disk-space error
+
+A disk-space error occurred while taking a snapshot. A clean baseline snapshot was subsequently taken, as reported for the completed setup. The provided notes do not specify the exact remediation steps, so none are inferred here.
+
+## Related documentation
+
+See [README.md](README.md) for the lab configuration and setup overview.
